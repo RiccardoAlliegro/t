@@ -1,0 +1,274 @@
+﻿<%@ Import Namespace="System.Data" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Index.master.cs" Inherits="SDB_2021.Index" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Import Namespace="Microsoft.AspNet.Identity" %>
+<!DOCTYPE html>
+<html>
+    <head runat="server">
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" href="Content/vendors/feather/feather.css"/>
+        <link rel="stylesheet" href="Content/vendors/ti-icons/css/themify-icons.css"/>
+        <link rel="stylesheet" href="Content/vendors/css/vendor.bundle.base.css"/>
+        <link rel="stylesheet" href="Content/vendors/select2/select2.min.css"/>
+        <link rel="stylesheet" href="Content/vendors/select2-bootstrap-theme/select2-bootstrap.min.css"/>
+        <link rel="stylesheet" href="Styles/style.css"/>
+        <link rel="shortcut icon" href="images/favicon.png"/>
+        <link href="Styles/jquery-ui.css" rel="Stylesheet" type="text/css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    </head>
+    <asp:ContentPlaceHolder id="HeadContent" runat="server"></asp:ContentPlaceHolder>
+
+    <body>
+        <form runat="server">
+            <asp:ScriptManager runat="server">
+                <Scripts>
+                    <asp:ScriptReference Path="~/Scripts/popper.min.js" />
+                    <asp:ScriptReference Path="Scripts/jquery-3.4.1.min.js" />
+                    <asp:ScriptReference Path="Content/vendors/js/vendor.bundle.base.js" />
+                    <asp:ScriptReference Path="Content/vendors/typeahead.js/typeahead.bundle.min.js" />
+                    <asp:ScriptReference Path="Content/vendors/select2/select2.min.js" />
+                    <asp:ScriptReference Path="Content/js/off-canvas.js" />
+                    <asp:ScriptReference Path="Content/js/hoverable-collapse.js" />
+                    <asp:ScriptReference Path="Content/js/template.js" />
+                    <asp:ScriptReference Path="Content/js/settings.js" />
+                    <asp:ScriptReference Path="Content/js/todolist.js" />
+                    <asp:ScriptReference Path="Content/js/file-upload.js" />
+                    <asp:ScriptReference Path="Content/js/typeahead.js" />
+                    <asp:ScriptReference Path="Content/js/select2.js" />
+                </Scripts>
+            </asp:ScriptManager>
+        
+            <div class="page">
+            <div class="header">
+                <div class="container-scroller sidebar-dark">
+                    <nav class="navbar navbar-dark col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                        <div class=" text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                            <a class="navbar-brand brand-logo mr-5" asp-controller="CRM" asp-action="ActivityPlanning"><img src="../Styles/Images/logo.svg" class="ml-3" alt="logo" /></a>
+                            <a class="navbar-brand brand-logo-mini" asp-controller="CRM" asp-action="ActivityPlanning"><img src="../Styles/Images/logo-mini.svg" alt="logo" /></a>
+                        </div>
+                        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                            <ul class="navbar-nav mr-lg-2">
+                                <li class="nav-item nav-search d-none d-lg-block">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                                            <span class="input-group-text" id="search"><i class="icon-search"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav navbar-nav-right">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                                        <img src="../Styles/Images/bell.svg" style="width:20px;" class="icon-bell mx-0" />
+                                        <span class="count"></span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                                        <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                                        <a class="dropdown-item preview-item">
+                                            <div class="preview-thumbnail">
+                                                <div class="preview-icon bg-success">
+                                                    <i class="ti-info-alt mx-0"></i>
+                                                </div>
+                                            </div>
+                                            <div class="preview-item-content">
+                                                <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                                                <p class="font-weight-light small-text mb-0 text-muted">Just now</p>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item preview-item">
+                                            <div class="preview-thumbnail">
+                                                <div class="preview-icon bg-warning">
+                                                    <i class="ti-settings mx-0"></i>
+                                                </div>
+                                            </div>
+                                            <div class="preview-item-content">
+                                                <h6 class="preview-subject font-weight-normal">Settings</h6>
+                                                <p class="font-weight-light small-text mb-0 text-muted">Private message</p>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item preview-item">
+                                            <div class="preview-thumbnail">
+                                                <div class="preview-icon bg-info">
+                                                    <i class="ti-user mx-0"></i>
+                                                </div>
+                                            </div>
+                                            <div class="preview-item-content">
+                                                <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                                                <p class="font-weight-light small-text mb-0 text-muted">2 days ago</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="nav-item nav-profile dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                                        <img src="../Styles/Images/SDB-tondo.svg" style="width:90px; padding-left: 10px;" />
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                                        <a class="dropdown-item">
+                                            <i class="ti-settings text-primary"></i>
+                                            Settings
+                                        </a>
+                                        <a class="dropdown-item">
+                                            <i class="ti-power-off text-primary"></i>
+                                            Logout
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                                <span class="icon-menu"></span>
+                            </button>
+                        </div>
+                    </nav>     
+                </div>
+            </div>
+            <div class="main">
+                <div class="container-scroller sidebar-dark">
+                    <div class="container-fluid page-body-wrapper">
+                        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                            <ul class="nav" style="height:90%;">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../CRM/ActivityPlanning.aspx">
+                                        <!-- Link a index -->
+                                        <img src="../Styles/Images/IconeSDB/activityplanning.svg" style="width:40px; padding-right: 8px;">
+                                        <span class="menu-title">Activity Planning</span>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../CRM/CompanyData.aspx">
+                                        <img src="../Styles/Images/IconeSDB/bigdatamanagement.svg" style="width:40px; padding-right: 8px;">
+                                        <span class="menu-title">Company Data</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../CRM/QuotationsList.aspx">
+                                        <img src="../Styles/Images/IconeSDB/quotations.svg" style="width:40px; padding-right: 8px;">
+                                        <span class="menu-title">Quotations</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../CRM/GlobalPriceList.aspx">
+                                        <img src="../Styles/Images/IconeSDB/virtualdoc.svg" style="width:40px; padding-right: 8px;">
+                                        <span class="menu-title">Virtual Doc</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../CRM/CercaDisegni.aspx">
+                                        <img src="../Styles/Images/IconeSDB/simec4you.svg" style="width:40px; padding-right: 8px;">
+                                        <span class="menu-title">Simec 4 You</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../CRM/Projects.aspx">
+                                        <img src="../Styles/Images/IconeSDB/projects.svg" style="width:40px; padding-right: 8px;">
+                                        <span class="menu-title">Project</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../CRM/SimForms.aspx">
+                                        <img src="../Styles/Images/IconeSDB/bigdatacollection.svg" style="width:40px; padding-right: 8px;">
+                                        <span class="menu-title">Big Data Collection</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item position-fixed" style="bottom:0px;">
+                                    <img src="../Styles/Images/logo_sdb_webt.svg" class="p-2" alt="" style="position:fixed; bottom:10px; width:230px; margin-left:-10px;" />
+                                </li>
+                            </ul>
+                            
+                        </nav>
+
+                        <div class="main main-panel">
+                            <div class="content-wrapper"><asp:ContentPlaceHolder ID="MainContent" runat="server"/></div>
+                            <footer class="text-center text-gray ">
+                                <div class="p-3" style="background-color: #1A1A1A;">
+                                    <span>© 2021 Simec Group - more than engraving:<a class="text-gray" href="https://www.simecgroup.com/">simecgroup.com</a></span>
+                                    <span class="info float-right" data-toggle="modal" data-target="#ModalCookie" id="CoockiePolicy" runat="server">cookie policy</span>
+                                    <span class="float-right">&nbsp;|&nbsp;</span>
+                                    <span class="info float-right" data-toggle="modal" data-target="#ModalNote" id="NoteLegali" runat="server">note legali</span>
+                                </div>
+                            </footer>
+                        </div>
+
+                        <style type="text/css">
+                            .info {
+                                color: gray;
+                                text-decoration: none;
+                                background-color: transparent;
+                            }
+                             .info:hover {
+                                    color: #0056b3;
+                                    text-decoration: underline;
+                                    cursor: pointer;
+                            }
+                        </style>
+                        <!-- Modal: Note Legali -->
+                        <div class="modal fade" id="ModalNote" tabindex="1" role="dialog">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="boxContent modal-content text-center">
+                                    <div style="padding-bottom:20px;"></div>
+                                    <h4><span style="color: #0077ff;">Privacy</span></h4><h2>Note Legali</h2><p><span style="color: #999999; padding-bottom:14px;">INFORMAZIONI SOCETARIE</span></p>
+                                    <hr style="height:1px; background-color:gray; width:80%;" /><br />
+                                    <h5>Simec Group S.r.l.</h5><p><span style="color: #999999;"><strong>Sede Legale, Amministrativa e Commerciale:&nbsp; </strong>Via G. Verga, 17 – 21057 Olgiate Olona (VA), Italia</span></p><p><span style="color: #999999;"><strong>Codice Fiscale e Partita IVA:&nbsp; &nbsp;</strong>03252460120</span></p><p><span style="color: #999999;"><strong>Registro Imprese di Varese:&nbsp; </strong>&nbsp;n.&nbsp;03252460120 –&nbsp;<strong>R.E.A. di Varese&nbsp;</strong>n. 335797</span></p><p><span style="color: #999999;"><strong>Capitale Sociale:</strong>&nbsp; di Euro 2.000.000,00 i.v.</span></p><p><span style="color: #999999;"><strong>E-mail:&nbsp; </strong>&nbsp;info@simecgroup.com –&nbsp;<strong>PEC</strong>&nbsp;simecgroup@legalmail.it</span></p>
+                                    <hr style="height:1px; background-color:gray; width:80%;" /><br />
+                                    <p><span style="color: #999999;">Il contenuto del sito www.simecgroup.com (di seguito denominato “Sito Web”) è di proprietà esclusiva di Simec Group srl (di seguito denominata “Simec Group “) che lo ha pubblicato per fini istituzionali, informativi e di comunicazione. L`utilizzo del Sito Web comporta l`accettazione delle condizioni d`uso qui di seguito stabilite. Se non si intende accettare le presenti condizioni si è invitati a non utilizzare il Sito Web.</span></p><p>&nbsp;</p><p><span style="color: #999999;">Il Sito Web è protetto da copyright, i cui diritti appartengono a Simec Group.</span></p><p><span style="color: #999999;">Il contenuto del Sito Web, inclusi tutti i marchi di fabbrica, loghi e nomi aziendali non deve essere, copiato, modificato, distribuito, scaricato, visualizzato o venduto in alcuna forma o con alcun mezzo. Simec Group si riserva tutti i diritti d’uso di tale materiale.</span></p><p><span style="color: #999999;">I marchi ed i loghi di soggetti terzi riprodotti sul Sito Web sono di esclusiva titolarità dei rispettivi titolari, che hanno autorizzato il loro utilizzo: ogni riproduzione è vietata.</span></p><p>&nbsp;</p><p><span style="color: #999999;">Simec Group opera con la massima diligenza possibile al fine di selezionare e aggiornare i contenuti del Sito Web; in ogni caso Simec Group declina ogni responsabilità nel caso in cui le informazioni riportate risultino incomplete, lacunose, non aggiornate o contengano errori di qualsiasi natura. Le informazioni contenute nel Sito Web sono soggette a modifica o aggiornamento senza preavviso e Simec Group si riserva il diritto di apportare migliorie e/o modifiche al Sito Web.</span></p><p>&nbsp;</p><p><span style="color: #999999;">Eventuali informazioni e materiale forniti da qualsiasi utente attraverso il Sito Web non saranno considerati di natura confidenziale o riservata. Pertanto Simec Group si riserva il diritto di utilizzare liberamente tali informazioni e materiale con le modalità che riterrà opportune. Chiunque invia materiale e/o informazioni garantisce che il medesimo è pubblicabile ed accetta di tenere indenne e manlevata Simec Group da qualsiasi azione da parte di terzi in relazione a tali materiali ed informazioni.</span></p><p>&nbsp;</p><p><span style="color: #999999;">Simec Group declina altresì qualsivoglia responsabilità per eventuali danni che possano derivare agli Utenti ed alle loro proprietà a seguito dell’accesso al Sito Web, dell’impossibilità di accedere al Sito Web o del downloading di materiale presente nel Sito, laddove sia consentito, incluso danni alle apparecchiature informatiche degli Utenti derivanti da virus.</span></p><p>&nbsp;</p><p><span style="color: #999999;">Per ogni eventuale controversia originata dalla interpretazione delle presenti condizioni d`uso sarà competente il Foro di Busto Arsizio (VA), Italia.</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal: Cookie Policy -->
+                        <div class="modal fade" id="ModalCookie" tabindex="1" role="dialog">
+                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                <div class="boxContent modal-content text-center">
+                                    <div style="padding-bottom:20px;"></div>
+                                    <h4><span style="color: #0077ff;">Cookie Policy</span></h4><h2>Cookie Policy per i Visitatori del Sito</h2><p><span style="color: #999999; padding-bottom:14px;">La presente Cookie Policy è redatta ai sensi della normativa vigente sulla protezione dei dati personali ed integra le informazioni rese attraverso la Privacy Policy.<br /> Ha lo scopo di descrivere i tipi di cookies utilizzati ed eventuali altre tecnologie impiegate nel sito.</span></p>
+                                    <br /><br />
+                                    
+                                    <div class="text-left">
+                                        <h3>Uso dei cookie</h3>
+                                        <h4>Uso dei cookie</h4>
+                                        <p><span style="color: #999999;">Il “Sito” (simecgroup.com) utilizza i Cookie per rendere i propri servizi semplici e efficienti per l’utenza che visiona le pagine di simecgroup.com. Gli utenti che visionano il Sito, vedranno inserite delle quantità minime di informazioni nei dispositivi in uso, che siano computer e periferiche mobili, in piccoli file di testo denominati “cookie” salvati nelle directory utilizzate dal browser web dell’Utente. Vi sono vari tipi di cookie, alcuni per rendere più efficace l’uso del Sito, altri per abilitare determinate funzionalità.</span></p><p><span style="color: #999999;">Analizzandoli in maniera particolareggiata i nostri cookie permettono di:</span></p><ul><li style="list-style-type: none;"><ul><li><span style="color: #999999;">memorizzare le preferenze inserite;</span></li></ul></li></ul><ul><li style="list-style-type: none;"><ul><li><span style="color: #999999;">evitare di reinserire le stesse informazioni più volte durante la visita quali ad esempio nome utente e password;</span></li></ul></li></ul><ul><li style="list-style-type: none;"><ul><li><span style="color: #999999;">analizzare l’utilizzo dei servizi e dei contenuti forniti da simecgroup.com per ottimizzarne l’esperienza di navigazione e i servizi offerti.</span></li></ul></li></ul>
+                                        
+                                        <h2>&nbsp;</h2>
+                                        <h4>Tipologie di Cookie</h4>
+                                        <h5>Cookie tecnici</h5>
+                                        <p><span style="color: #999999;">Questa tipologia di cookie permette il corretto funzionamento di alcune sezioni del Sito. Sono di due categorie: persistenti e di sessione:</span></p><ul><li style="list-style-type: none;"><ul><li><span style="color: #999999;">persistenti: una volta chiuso il browser non vengono distrutti ma rimangono fino ad una data di scadenza preimpostata</span></li></ul></li></ul><ul><li style="list-style-type: none;"><ul><li><span style="color: #999999;">di sessione: vengono distrutti ogni volta che il browser viene chiuso</span></li></ul></li></ul><p><span style="color: #999999;">Questi cookie, inviati sempre dal nostro dominio, sono necessari a visualizzare correttamente il sito e in relazione ai servizi tecnici offerti, verranno quindi sempre utilizzati e inviati, a meno che l’utenza non modifichi le impostazioni nel proprio browser (inficiando così la visualizzazione delle pagine del sito).</span></p>
+                                    
+                                        <h5>Cookie analitici</h5><p><span style="color: #999999;">I cookie in questa categoria vengono utilizzati per collezionare informazioni sull’uso del sito. simecgroup.com userà queste informazioni in merito ad analisi statistiche anonime al fine di migliorare l’utilizzo del Sito e per rendere i contenuti più interessanti e attinenti ai desideri dell’utenza. Questa tipologia di cookie raccoglie dati in forma anonima sull’attività dell’utenza e su come è arrivata sul Sito. I cookie analitici sono inviati dal Sito Stesso o da domini di terze parti.</span></p>
+                                    
+                                        <h5>Cookie di analisi di servizi di terze parti</h5><p><span style="color: #999999;">Questi cookie sono utilizzati al fine di raccogliere informazioni sull’uso del Sito da parte degli utenti in forma anonima quali: pagine visitate, tempo di permanenza, origini del traffico di provenienza, provenienza geografica, età, genere e interessi ai fini di campagne di marketing. Questi cookie sono inviati da domini di terze parti esterni al Sito.</span></p>
+                                    
+                                        <h5>Cookie per integrare prodotti e funzioni di software di terze parti</h5><p><span style="color: #999999;">Questa tipologia di cookie integra funzionalità sviluppate da terzi all’interno delle pagine del Sito come le icone e le preferenze espresse nei social network al fine di condivisione dei contenuti del sito o per l’uso di servizi software di terze parti (come i software per generare le mappe e ulteriori software che offrono servizi aggiuntivi). Questi cookie sono inviati da domini di terze parti e da siti partner che offrono le loro funzionalità tra le pagine del Sito.</span></p>
+                                    
+                                        <h5>Cookie di profilazione</h5><p><span style="color: #999999;">Sono quei cookie necessari a creare profili utenti al fine di inviare messaggi pubblicitari in linea con le preferenze manifestate dall’utente all’interno delle pagine del Sito.</span></p><p><span style="color: #999999;">simecgroup.com, secondo la normativa vigente, non è tenuto a chiedere consenso per i cookie tecnici e di analytics, in quanto necessari a fornire i servizi richiesti.</span></p><p><span style="color: #999999;">Per tutte le altre tipologie di cookie il consenso può essere espresso dall’Utente con una o più di una delle seguenti modalità:</span></p><ul><li style="list-style-type: none;"><ul><li><span style="color: #999999;">Mediante specifiche configurazioni del browser utilizzato o dei relativi programmi informatici utilizzati per navigare le pagine che compongono il Sito.</span></li></ul></li></ul><ul><li style="list-style-type: none;"><ul><li><span style="color: #999999;">Mediante modifica delle impostazioni nell’uso dei servizi di terze parti</span></li></ul></li></ul><p><span style="color: #999999;"><strong>Entrambe queste soluzioni potrebbero impedire all’utente di utilizzare o visualizzare parti del Sito.</strong></span></p>
+                                    
+                                        <h5>Siti Web e servizi di terze parti</h5><p><span style="color: #999999;">Il Sito potrebbe contenere collegamenti ad altri siti Web che dispongono di una propria informativa sulla privacy che può essere diverse da quella adottata da simecgroup.com e che che quindi non risponde di questi siti.</span></p><p><span style="color: #999999;">In particolare, è attivo il servizio Google Analytics, che aiuta il titolare del sito a capire come i visitatori interagiscono con i contenuti del sito stesso. Maggiori informazioni su Google Analytics sono disponibili</span> <span style="color: #999999;">qui</span>&nbsp;<span style="color: #0077ff;"><a style="color: #0077ff;" href="https://support.google.com/analytics/answer/6004245">https://support.google.com/analytics/answer/6004245</a></span></p><p><span style="color: #999999;">Le statistiche di Google Analytics sono generate senza raccogliere informazioni personali sui singoli visitatori (indirizzo IP anonimo). L’anonimizzazione funziona abbreviando entro i confini degli Stati Membri dell’Unione Europea o in altri Paesi aderenti all’accordo sullo Spazio Economico Europeo l’indirizzo IP degli Utenti. Solo in casi eccezionali, l’indirizzo IP sarà inviato ai server di Google ed abbreviato all’interno degli Stati Uniti.</span></p><p><span style="color: #999999;">Nome Cookie: __utma, __utmb, __utmc, __utmt, __utmz</span></p><p><span style="color: #999999;">&nbsp;</span></p>
+                                    </div>
+
+                                    <h3>Come disabilitare i cookie mediante configurazione del browser</h3><p><span style="color: #999999;">Se desideri approfondire le modalità con cui il tuo browser memorizza i cookies durante la tua navigazione, ti invitiamo a seguire questi link sui siti dei rispettivi fornitori.</span></p>
+                                    <div class="bdt-fancy-list">
+                                        <ul class="bdt-list custom-list-group">
+                                            <li><a href="https://support.mozilla.org/it/kb/Gestione%20dei%20cookie" target="_blank"><div class="bdt-flex flex-wrap"><div class="list-text "><h4 class="bdt-list-title">Mozilla Firefox  -  https://support.mozilla.org/it/kb/Gestione%20dei%20cookie </h4><p class="list-text-des"></p></div></div></a></li>
+                                            <li><a href="https://support.google.com/chrome/answer/95647?hl=it" target="_blank"><div class="bdt-flex flex-wrap"><div class="list-text "><h4 class="bdt-list-title">Google Chrome - https://support.google.com/chrome/answer/95647?hl=it </h4><p class="list-text-des"></p></div></div></a></li>
+                                            <li><a href="http://windows.microsoft.com/it-it/windows-vista/block-or-allow-cookies" target="_blank"><div class="bdt-flex flex-wrap"><div class="list-text "><h4 class="bdt-list-title">Internet Explorer - http://windows.microsoft.com/it-it/windows-vista/block-or-allow-cookies </h4><p class="list-text-des"></p></div></div></a></li>
+                                            <li><a href="https://support.apple.com/kb/PH17191?viewlocale=it_IT&amp;locale=it_IT" target="_blank"><div class="bdt-flex flex-wrap"><div class="list-text "><h4 class="bdt-list-title">Safari 6/7 Mavericks - https://support.apple.com/kb/PH17191?viewlocale=it_IT&amp;locale=it_IT </h4><p class="list-text-des"></p></div></div></a></li>
+                                            <li><a href="https://support.apple.com/kb/PH19214?viewlocale=it_IT&amp;locale=it_IT" target="_blank"><div class="bdt-flex flex-wrap"><div class="list-text "><h4 class="bdt-list-title">Safari 8 Yosemite - https://support.apple.com/kb/PH19214?viewlocale=it_IT&amp;locale=it_IT </h4><p class="list-text-des"></p></div></div></a></li>
+                                            <li><a href="https://support.apple.com/it-it/HT201265" target="_blank"><div class="bdt-flex flex-wrap"><div class="list-text "><h4 class="bdt-list-title">Safari su iPhone, iPad, o iPod touch - https://support.apple.com/it-it/HT201265 </h4><p class="list-text-des"></p></div></div></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        </form>
+    </body>
+</html>
